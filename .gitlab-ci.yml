@@ -1,0 +1,13 @@
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+stages:
+  - build-GCC
+  - build-Clang
+  - quality
+  - deploy
+
+include:
+  - "/.gitlab/ci/build-linux.yml"
+  - "/.gitlab/ci/deploy.yml"
+  - "/.gitlab/ci/quality.yml"

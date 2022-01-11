@@ -25,17 +25,14 @@ if (USE_CONAN)
     conan_basic_setup()
 endif ()
 
-
 # Project-wide compilation options.
 add_compile_options(-Wall -Wextra -Wpedantic -Werror $<$<COMPILE_LANGUAGE:CXX>:-std=c++17>)
 
 if (USE_ASAN OR USE_LSAN OR USE_UBSAN)
-    # Enable compiler sanitizers.
     enable_sanitizers()
 endif ()
 
 if (COVERAGE)
-    # Generate coverage report.
     add_lcov_coverage(IGNORE ${CMAKE_CURRENT_SOURCE_DIR}/test/*)
 endif ()
 
@@ -51,5 +48,4 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_subdirectory(app)
 
-# Generate documentation.
 doxygen_addTarget(${CMAKE_CURRENT_SOURCE_DIR}/lib README.md)

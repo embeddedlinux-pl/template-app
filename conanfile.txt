@@ -1,6 +1,6 @@
 [requires]
 cli11/2.1.1
-fmt/8.0.1
+fmt/8.1.1
 spdlog/1.9.2
 
 [generators]

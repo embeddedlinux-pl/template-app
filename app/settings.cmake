@@ -1,1 +1,1 @@
-set(LINUX_ARM_TOOLCHAIN_10_PATH     "/opt/toolchains/gcc-arm-10.2-2020.11-x86_64-arm-none-linux-gnueabihf/bin/")
+set(LINUX_ARM_TOOLCHAIN_PATH        "/opt/toolchains/gcc-arm-11.2-2022.02-x86_64-arm-none-linux-gnueabihf/bin/")

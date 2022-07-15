@@ -1,7 +1,5 @@
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.22)
 
-# Define application name and settings.
-set(APP template-app)
 include(app/settings.cmake)
 
 include(cmake/conan.cmake)
@@ -41,7 +39,7 @@ endif ()
 add_definitions(-DAPPLICATION_LOGGER)
 include_directories(app/utils/include/utils/app)
 
-add_subdirectory(${platform_SOURCE_DIR}/app ${platform_BINARY_DIR})
+add_subdirectory(${platform_SOURCE_DIR}/lib ${platform_BINARY_DIR})
 add_subdirectory(${osal_SOURCE_DIR}/lib ${osal_BINARY_DIR})
 add_subdirectory(${utils_SOURCE_DIR}/lib ${utils_BINARY_DIR})
 

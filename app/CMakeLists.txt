@@ -1,13 +1,9 @@
 add_subdirectory(utils)
 
-add_library(apptemplate-app EXCLUDE_FROM_ALL
+add_executable(template-app
     appMain.cpp
 )
 
-target_include_directories(apptemplate-app
-    PRIVATE .
-)
-
-target_link_libraries(apptemplate-app
-    PRIVATE osal::cpp utils
+target_link_libraries(template-app
+    PRIVATE osal::cpp platform::main utils
 )

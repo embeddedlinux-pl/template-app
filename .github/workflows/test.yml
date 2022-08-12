@@ -1,0 +1,13 @@
+name: test
+runs-on: [self-hosted, build, linux]
+on: [push, pull-request]
+
+jobs:
+  build:
+    steps:
+      - run: echo "Running test"
+      - uses: actions/checkout@v3
+        run: |
+          ls ${{ github.workspace }}
+          pwd
+          ls -al

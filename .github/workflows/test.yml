@@ -1,5 +1,5 @@
 name: test
-runs-on: [self-hosted, build, linux]
+runs-on: [self-hosted, build, Linux]
 on: [push, pull-request]
 
 jobs:

@@ -1,6 +1,6 @@
 name: test
 runs-on: [self-hosted]
-on: [push, pull-request]
+#on: [push, pull-request]
 
 jobs:
   build:

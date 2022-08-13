@@ -13,7 +13,7 @@ jobs:
             preset: linux-gcc-debug
           - image: "embeddedlinux/clang:14-22.04"
             preset: linux-clang-debug
-    name: ${{ matrix.image }}
+    name: ${{ matrix.preset }} (${{ matrix.image }})
     container:
       image: ${{ matrix.image }}
     steps:

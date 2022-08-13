@@ -1,5 +1,4 @@
 name: test
-
 on: [push]
 
 jobs:
@@ -7,7 +6,9 @@ jobs:
     runs-on: [self-hosted, build, Linux, X64]
     strategy:
       matrix:
-        image: ['embeddedlinux/gcc:11-22.04']
+        include:
+          - image: 'embeddedlinux/gcc:11-22.04'
+            preset: linux-gcc-debug
     container:
       image: ${{ matrix.image }}
     steps:
@@ -18,9 +19,9 @@ jobs:
           cd ${{ github.run_id }}
 
           ls -al ~
-          which conan
+          ll `which conan`
           echo $PATH
           conan --version
           pwd
-          cmake .. --preset linux-gcc-debug
+          cmake .. --preset ${{ matrix.preset }}
           make

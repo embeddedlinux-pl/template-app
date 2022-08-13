@@ -6,7 +6,7 @@ jobs:
   build:
     runs-on: [self-hosted, build, Linux, X64]
     container:
-      image: embeddedlinux/gcc:11-22.04
+      image: ubuntu:22.04
     steps:
       - uses: actions/checkout@v3
       - run: |

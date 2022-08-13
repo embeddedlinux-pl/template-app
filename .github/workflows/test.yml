@@ -14,6 +14,7 @@ jobs:
           mkdir ${{ github.run_id }}
           cd ${{ github.run_id }}
 
+          conan --version
           pwd
           cmake .. --preset linux-gcc-debug
           make

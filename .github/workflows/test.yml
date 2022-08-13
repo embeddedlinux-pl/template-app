@@ -1,6 +1,6 @@
 name: test
 
-runs-on: [self-hosted, build, Linux, X64]
+runs-on: [self-hosted, build]
 on: [push, pull_request]
 
 jobs:

@@ -1,10 +1,10 @@
 name: test
 
-runs-on: [self-hosted]
 on: [push, pull_request]
 
 jobs:
   build:
+    runs-on: [self-hosted]
     steps:
       - run: echo "Running test"
       - uses: actions/checkout@v3

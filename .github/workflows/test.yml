@@ -10,7 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: |
+          mkdir ${{ github.run_id }}
+          cd ${{ github.run_id }}
+      - run: |
           pwd
-          ls -al
-          whoami
-          ls /home
+          cmake --preset linux-gcc-debug
+          make

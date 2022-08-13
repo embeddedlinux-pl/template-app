@@ -9,10 +9,11 @@ jobs:
       image: embeddedlinux/gcc:11-22.04
     steps:
       - uses: actions/checkout@v3
-      - run: |
+      - name: Build
+        run: |
           mkdir ${{ github.run_id }}
           cd ${{ github.run_id }}
-      - run: |
+
           pwd
           cmake --preset linux-gcc-debug
           make

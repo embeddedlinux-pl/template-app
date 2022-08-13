@@ -1,6 +1,6 @@
 name: test
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   build:
@@ -14,6 +14,9 @@ jobs:
           mkdir ${{ github.run_id }}
           cd ${{ github.run_id }}
 
+          ls -al ~
+          which conan
+          echo $PATH
           conan --version
           pwd
           cmake .. --preset linux-gcc-debug

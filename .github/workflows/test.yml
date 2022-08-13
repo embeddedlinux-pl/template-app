@@ -25,10 +25,15 @@ jobs:
 
           cmake .. --preset ${{ matrix.preset }}
           make
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.preset }}
+          path: ${{ github.run_id }}/bin
+
+  test:
+    runs-on: [self-hosted, build]
+    name: test
+    steps:
       - run: |
-          pwd
-          ls -al
-      # - uses: actions/upload-artifact@v3
-      #   with:
-      #     name: ${{ matrix.preset }}
-      #     path: path/**/[abc]rtifac?/*
+        pwd
+        ls -al

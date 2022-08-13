@@ -4,9 +4,10 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: [self-hosted, build]
+    runs-on: [self-hosted, build, Linux, X64]
+    container:
+      image: embeddedlinux/gcc:11-22.04
     steps:
-      - run: echo "Running test"
       - uses: actions/checkout@v3
       - run: |
           ls ${{ github.workspace }}

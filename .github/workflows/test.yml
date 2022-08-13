@@ -1,13 +1,16 @@
 name: test
 on: [push]
 
+env:
+  HOME: /home/builder
+
 jobs:
   build:
     runs-on: [self-hosted, build, Linux, X64]
     strategy:
       matrix:
         include:
-          - image: 'embeddedlinux/gcc:11-22.04'
+          - image: "embeddedlinux/gcc:11-22.04"
             preset: linux-gcc-debug
     container:
       image: ${{ matrix.image }}

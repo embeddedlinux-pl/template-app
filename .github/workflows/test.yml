@@ -12,3 +12,5 @@ jobs:
       - run: |
           pwd
           ls -al
+          whoami
+          ls /home

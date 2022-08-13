@@ -15,5 +15,5 @@ jobs:
           cd ${{ github.run_id }}
 
           pwd
-          cmake --preset linux-gcc-debug
+          cmake .. --preset linux-gcc-debug
           make

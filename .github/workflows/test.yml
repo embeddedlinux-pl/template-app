@@ -1,17 +1,18 @@
 name: test
 on: [push]
-
 env:
   HOME: /home/builder
 
 jobs:
   build:
-    runs-on: [self-hosted, build, Linux, X64]
+    runs-on: [self-hosted, build]
     strategy:
       matrix:
         include:
           - image: "embeddedlinux/gcc:11-22.04"
             preset: linux-gcc-debug
+          - image: "embeddedlinux/clang:14-22.04"
+            preset: linux-clang-debug
     container:
       image: ${{ matrix.image }}
     steps:
@@ -21,12 +22,5 @@ jobs:
           mkdir ${{ github.run_id }}
           cd ${{ github.run_id }}
 
-          ls -al ~
-          ls -al `which conan`
-          ls -al ~
-          echo "PATH = $PATH"
-          echo "HOME = $HOME"
-          conan --version
-          pwd
           cmake .. --preset ${{ matrix.preset }}
           make

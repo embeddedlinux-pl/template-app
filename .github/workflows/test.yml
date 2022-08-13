@@ -5,9 +5,8 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: [self-hosted, build, Linux, X64]
-    #runs-on: ubuntu-latest
     container:
-      image: ubuntu:22.04
+      image: embeddedlinux/gcc:11-22.04
     steps:
       - uses: actions/checkout@v3
       - run: |

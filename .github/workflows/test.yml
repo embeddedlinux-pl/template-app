@@ -13,14 +13,16 @@ jobs:
       image: ${{ matrix.image }}
     steps:
       - uses: actions/checkout@v3
-      - name: Build
+      - name: Build 
         run: |
           mkdir ${{ github.run_id }}
           cd ${{ github.run_id }}
 
           ls -al ~
           ls -al `which conan`
-          echo $PATH
+          ls -al ~
+          echo "PATH = $PATH"
+          echo "HOME = $HOME"
           conan --version
           pwd
           cmake .. --preset ${{ matrix.preset }}

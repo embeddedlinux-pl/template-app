@@ -19,7 +19,7 @@ jobs:
           cd ${{ github.run_id }}
 
           ls -al ~
-          ll `which conan`
+          ls -al `which conan`
           echo $PATH
           conan --version
           pwd

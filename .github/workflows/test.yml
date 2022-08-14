@@ -13,6 +13,8 @@ jobs:
             image: embeddedlinux/gcc:11-22.04
           - preset: linux-clang-debug 
             image: embeddedlinux/clang:14-22.04
+          - preset: linux-arm-gcc-debug 
+            image: embeddedlinux/arm-none-linux-gnueabihf-gcc:11-22.04
     name: Build ${{ matrix.preset }}
     container:
       image: ${{ matrix.image }}

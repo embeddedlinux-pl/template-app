@@ -56,4 +56,5 @@ jobs:
         with:
           name: ${{ matrix.preset }}
       - run: |
+          tar -xvf artifacts.tar
           ls -al

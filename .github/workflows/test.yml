@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         include:
-          - image: "embeddedlinux/gcc:11-22.04"
+          - image: ${DOCKER_IMAGE_GCC}
             preset: linux-gcc-debug
           - image: "embeddedlinux/clang:14-22.04"
             preset: linux-clang-debug

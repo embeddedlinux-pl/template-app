@@ -42,7 +42,7 @@ jobs:
     name: Test ${{ matrix.preset }}
     container:
       image: ${{ matrix.image }}
-    needs: Build ${{ matrix.preset }}
+    needs: build
     steps:
       - uses: actions/download-artifact@v3
         with:

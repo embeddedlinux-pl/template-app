@@ -44,9 +44,11 @@ int appMain(int argc, char* argv[])
     CLI::App app{"template-app - Template for application repository and app"};
 
     bool testFlag{};
-app.add_flag("-t,--test", testFlag, "Test flag");
+    app.add_flag("-t,--test", testFlag, "Test flag");
 
     CLI11_PARSE(app, argc, argv);
+    int* a = new int();
+    (void) a;
 
     if (!osal::init())
         return EXIT_FAILURE;

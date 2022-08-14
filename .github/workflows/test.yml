@@ -32,6 +32,15 @@ jobs:
 
   test:
     runs-on: [self-hosted, build]
+    strategy:
+      matrix:
+        include:
+          - image: "embeddedlinux/gcc:11-22.04"
+            preset: linux-gcc-debug
+          - image: "embeddedlinux/clang:14-22.04"
+            preset: linux-clang-debug
+    container:
+      image: ${{ matrix.image }}
     needs: build
     steps:
       - uses: actions/download-artifact@v3

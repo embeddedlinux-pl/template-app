@@ -50,4 +50,5 @@ jobs:
         with:
           name: ${{ matrix.preset }}
       - run: |
-          ls -al
+          cd ${{ github.run_id }}/bin
+          ./template-app

@@ -23,8 +23,6 @@ jobs:
             image: embeddedlinux/arm-none-linux-gnueabihf-gcc:11-22.04
           - preset: linux-arm-clang-debug
             image: embeddedlinux/arm-none-linux-gnueabihf-clang:14-22.04
-          - preset: linux-arm-clang-release
-            image: embeddedlinux/arm-none-linux-gnueabihf-clang:14-22.04
     name: Build ${{ matrix.preset }}
     container:
       image: ${{ matrix.image }}
@@ -39,7 +37,6 @@ jobs:
 
           cmake .. --preset ${{ matrix.preset }}
           make
-          echo "sss"
       - uses: alehechka/upload-tartifact@v1
         with:
           name: ${{ matrix.preset }}

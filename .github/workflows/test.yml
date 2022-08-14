@@ -13,7 +13,7 @@ jobs:
             preset: linux-gcc-debug
           - image: "embeddedlinux/clang:14-22.04"
             preset: linux-clang-debug
-    name: ${{ matrix.preset }} (${{ matrix.image }})
+    name: ${{ matrix.preset }}
     container:
       image: ${{ matrix.image }}
     steps:
@@ -44,6 +44,8 @@ jobs:
     needs: build
     steps:
       - uses: actions/download-artifact@v3
+        with:
+          name: ${{ matrix.preset }}
       - run: |
           pwd
           ls -al

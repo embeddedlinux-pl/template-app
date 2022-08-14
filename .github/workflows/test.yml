@@ -56,6 +56,4 @@ jobs:
         with:
           name: ${{ matrix.preset }}
       - run: |
-          tar -xvf ${{ matrix.preset }}.tar
-          rm ${{ matrix.preset }}.tar
-          bin/template-app -h
+          ls -al

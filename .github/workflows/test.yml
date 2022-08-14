@@ -2,8 +2,8 @@ name: test
 on: [push]
 env:
   HOME: /home/builder
-  DOCKER_IMAGE_GCC: embeddedlinux/gcc:11-22.04
-  DOCKER_IMAGE_CLANG: embeddedlinux/clang:14-22.04
+  docker_image_gcc: embeddedlinux/gcc:11-22.04
+  docker_image_clang: embeddedlinux/clang:14-22.04
   DOCKER_IMAGE_ARM_LINUX_GCC: embeddedlinux/arm-none-linux-gnueabihf-gcc:11-22.04
   DOCKER_IMAGE_ARM_LINUX_CLANG: embeddedlinux/arm-none-linux-gnueabihf-clang:14-22.04
 
@@ -13,9 +13,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - image: "${DOCKER_IMAGE_GCC}"
+          - image: "${docker_image_gcc}"
             preset: linux-gcc-debug
-          - image: "embeddedlinux/clang:14-22.04"
+          - image: "${docker_image_clang}"
             preset: linux-clang-debug
     name: Build ${{ matrix.preset }}
     container:
@@ -43,9 +43,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - image: "embeddedlinux/gcc:11-22.04"
+          - image: "${docker_image_gcc}"
             preset: linux-gcc-debug
-          - image: "embeddedlinux/clang:14-22.04"
+          - image: "${docker_image_clang}"
             preset: linux-clang-debug
     name: Test ${{ matrix.preset }}
     container:

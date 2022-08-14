@@ -22,3 +22,26 @@ jobs:
             git checkout -- .
             exit 1
           fi
+
+  clang-tidy:
+    runs-on: [self-hosted, build]
+    name: clang-tidy
+    container:
+      image: embeddedlinux/clang:14-22.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Check clang-tidy 
+        run: |
+          mkdir cmake-build
+          cd cmake-build
+
+          cmake .. --preset linux-clang-debug
+          ../tools/check-clang-tidy.sh
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: |
+            cmake-build/errors.yml
+            cmake-build/compile_commands.json

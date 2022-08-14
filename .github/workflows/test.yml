@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         include:
-          - image: "embeddedlinux/gcc:11-22.04"
+          - image: embeddedlinux/gcc:11-22.04
             preset: linux-gcc-debug
           - image: "embeddedlinux/clang:14-22.04"
             preset: linux-clang-debug
@@ -49,6 +49,7 @@ jobs:
       - uses: alehechka/download-tartifact@v1
         with:
           name: ${{ matrix.preset }}
-      - run: |
+      - name: Run test
+        run: |
           cd ${{ github.run_id }}/bin
           ./template-app

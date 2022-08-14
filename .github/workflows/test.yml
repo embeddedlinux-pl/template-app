@@ -2,10 +2,6 @@ name: test
 on: [push]
 env:
   HOME: /home/builder
-  docker_image_gcc: embeddedlinux/gcc:11-22.04
-  docker_image_clang: embeddedlinux/clang:14-22.04
-  DOCKER_IMAGE_ARM_LINUX_GCC: embeddedlinux/arm-none-linux-gnueabihf-gcc:11-22.04
-  DOCKER_IMAGE_ARM_LINUX_CLANG: embeddedlinux/arm-none-linux-gnueabihf-clang:14-22.04
 
 jobs:
   build:
@@ -13,9 +9,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - image: "${docker_image_gcc}"
+          - image: "embeddedlinux/gcc:11-22.04"
             preset: linux-gcc-debug
-          - image: "${docker_image_clang}"
+          - image: "embeddedlinux/clang:14-22.04"
             preset: linux-clang-debug
     name: Build ${{ matrix.preset }}
     container:
@@ -43,20 +39,17 @@ jobs:
     strategy:
       matrix:
         include:
-          - image: "${docker_image_gcc}"
+          - image: "embeddedlinux/gcc:11-22.04"
             preset: linux-gcc-debug
-          - image: "${docker_image_clang}"
+          - image: "embeddedlinux/clang:14-22.04"
             preset: linux-clang-debug
     name: Test ${{ matrix.preset }}
     container:
       image: ${{ matrix.image }}
     needs: build
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: alehechka/download-tartifact@v1
         with:
           name: ${{ matrix.preset }}
       - run: |
-          tar -xvf artifacts.tar
-          rm artifacts.tar
-          cd ${{ github.run_id }}/bin
-          ./template-app
+          ls -al

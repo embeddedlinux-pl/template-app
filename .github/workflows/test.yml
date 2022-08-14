@@ -39,6 +39,7 @@ jobs:
 
           cmake .. --preset ${{ matrix.preset }}
           make
+          echo "sss"
       - uses: alehechka/upload-tartifact@v1
         with:
           name: ${{ matrix.preset }}

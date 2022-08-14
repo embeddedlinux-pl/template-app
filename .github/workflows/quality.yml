@@ -17,8 +17,8 @@ jobs:
         run: |
           tools/check-clang-format.sh app
           git diff --color > clang-format.patch
-          if [[ `wc -l < clang-format.patch` != "0" ]]; then
+          if [ `wc -l < clang-format.patch` != "0" ]; then
             cat clang-format.patch
             git checkout -- .
-          exit 1
+            exit 1
           fi

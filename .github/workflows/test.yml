@@ -22,6 +22,8 @@ jobs:
       image: ${{ matrix.image }}
     steps:
       - uses: actions/checkout@v3
+        with:
+          submodules: true
       - name: Build 
         run: |
           mkdir ${{ github.run_id }}

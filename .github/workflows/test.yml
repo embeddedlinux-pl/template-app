@@ -55,4 +55,5 @@ jobs:
         with:
           name: ${{ matrix.preset }}
       - run: |
+          chmod +x ./template-app_${{ matrix.preset }}
           ./template-app_${{ matrix.preset }} -h

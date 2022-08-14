@@ -32,7 +32,7 @@ jobs:
 
   test:
     runs-on: [self-hosted, build]
-    name: test
+    needs: build
     steps:
       - run: |
           pwd

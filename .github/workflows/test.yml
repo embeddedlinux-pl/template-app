@@ -9,13 +9,21 @@ jobs:
     strategy:
       matrix:
         include:
-          - preset: linux-gcc-debug 
+          - preset: linux-gcc-debug
             image: embeddedlinux/gcc:11-22.04
-          - preset: linux-clang-debug 
+          - preset: linux-gcc-release
+            image: embeddedlinux/gcc:11-22.04
+          - preset: linux-clang-debug
             image: embeddedlinux/clang:14-22.04
-          - preset: linux-arm-gcc-debug 
+          - preset: linux-clang-release
+            image: embeddedlinux/clang:14-22.04
+          - preset: linux-arm-gcc-debug
+            image: embeddedlinux/arm-none-linux-gnueabihf-gcc:11-22.04
+          - preset: linux-arm-gcc-release
             image: embeddedlinux/arm-none-linux-gnueabihf-gcc:11-22.04
           - preset: linux-arm-clang-debug
+            image: embeddedlinux/arm-none-linux-gnueabihf-clang:14-22.04
+            - preset: linux-arm-clang-release
             image: embeddedlinux/arm-none-linux-gnueabihf-clang:14-22.04
     name: Build ${{ matrix.preset }}
     container:

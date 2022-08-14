@@ -27,12 +27,10 @@ jobs:
 
           cmake .. --preset ${{ matrix.preset }}
           make
-      - name: Compress artifacts
-        run: tar -cvf artifacts.tar ${{ github.run_id }}/bin
       - uses: alehechka/upload-tartifact@v1
         with:
           name: ${{ matrix.preset }}
-          path: artifacts.tar
+          path: ${{ github.run_id }}/bin
 
   test:
     runs-on: [self-hosted, build]

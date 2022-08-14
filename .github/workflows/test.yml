@@ -55,4 +55,4 @@ jobs:
         with:
           name: ${{ matrix.preset }}
       - run: |
-          ls -al
+          ./template-app_${{ matrix.preset }} -h

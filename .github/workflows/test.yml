@@ -31,11 +31,12 @@ jobs:
 
           cmake .. --preset ${{ matrix.preset }}
           make
-          mv bin/template-app bin/template-app_${{ matrix.preset }}
+      - name: Compress artifacts
+        run: tar -cvf artifacts.tar ${{ github.run_id }}/bin
       - uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.preset }}
-          path: ${{ github.run_id }}/bin
+          path: artifacts.tar
 
   test:
     runs-on: [self-hosted, build]
@@ -55,5 +56,6 @@ jobs:
         with:
           name: ${{ matrix.preset }}
       - run: |
-          chmod +x ./template-app_${{ matrix.preset }}
-          ./template-app_${{ matrix.preset }} -h
+          tar -xvf artifact.tar
+          rm artifact.tar
+          bin/template-app -h

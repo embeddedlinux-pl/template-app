@@ -29,7 +29,7 @@ jobs:
 
           cmake .. --preset ${{ matrix.preset }}
           make
-          mv bin/template-app template-app_${{ matrix.preset }}
+          mv bin/template-app bin/template-app_${{ matrix.preset }}
       - uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.preset }}

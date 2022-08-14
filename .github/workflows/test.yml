@@ -11,7 +11,7 @@ jobs:
         include:
           - image: embeddedlinux/gcc:11-22.04
             preset: linux-gcc-debug
-          - image: "embeddedlinux/clang:14-22.04"
+          - image: embeddedlinux/clang:14-22.04
             preset: linux-clang-debug
     name: Build ${{ matrix.preset }}
     container:
@@ -37,9 +37,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - image: "embeddedlinux/gcc:11-22.04"
+          - image: embeddedlinux/gcc:11-22.04
             preset: linux-gcc-debug
-          - image: "embeddedlinux/clang:14-22.04"
+          - image: embeddedlinux/clang:14-22.04
             preset: linux-clang-debug
     name: Test ${{ matrix.preset }}
     container:

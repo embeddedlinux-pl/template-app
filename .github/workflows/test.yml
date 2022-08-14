@@ -57,4 +57,6 @@ jobs:
           name: ${{ matrix.preset }}
       - run: |
           tar -xvf artifacts.tar
-          ls -al
+          rm artifacts.tar
+          cd ${{ github.run_id }}/bin
+          ./template-app

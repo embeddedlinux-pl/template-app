@@ -22,15 +22,15 @@ jobs:
           submodules: true
       - name: Build 
         run: |
-          mkdir ${{ github.run_id }}
-          cd ${{ github.run_id }}
+          mkdir cmake-build
+          cd cmake-build
 
           cmake .. --preset ${{ matrix.preset }}
           make
       - uses: alehechka/upload-tartifact@v1
         with:
           name: ${{ matrix.preset }}
-          path: ${{ github.run_id }}/bin
+          path: cmake-build/bin
 
   test:
     runs-on: [self-hosted, build]
@@ -51,5 +51,5 @@ jobs:
           name: ${{ matrix.preset }}
       - name: Run test
         run: |
-          cd ${{ github.run_id }}/bin
+          cd cmake-build/bin
           ./template-app

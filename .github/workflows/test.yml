@@ -1,9 +1,11 @@
 name: test
 on: [push]
+env:
+  HOME: /home/builder
 
 jobs:
   build:
-    runs-on: [ubuntu-latest]
+    runs-on: [self-hosted, build]
     strategy:
       matrix:
         include:
@@ -35,7 +37,7 @@ jobs:
           path: cmake-build/bin
 
   test:
-    runs-on: [ubuntu-latest]
+    runs-on: [self-hosted, build]
     strategy:
       matrix:
         include:

@@ -1,0 +1,59 @@
+name: test
+on: [push]
+env:
+  HOME: /home/builder
+
+jobs:
+  build:
+    runs-on: [self-hosted, build]
+    strategy:
+      matrix:
+        include:
+          - preset: linux-gcc-debug
+            image: embeddedlinux/gcc:11-22.04
+          - preset: linux-clang-debug
+            image: embeddedlinux/clang:14-22.04
+          - preset: linux-arm-gcc-debug
+            image: embeddedlinux/arm-none-linux-gnueabihf-gcc:11-22.04
+          - preset: linux-arm-clang-debug
+            image: embeddedlinux/arm-none-linux-gnueabihf-clang:14-22.04
+    name: Build ${{ matrix.preset }}
+    container:
+      image: ${{ matrix.image }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Build 
+        run: |
+          mkdir cmake-build
+          cd cmake-build
+
+          cmake .. --preset ${{ matrix.preset }}
+          make
+      - uses: alehechka/upload-tartifact@v1
+        with:
+          name: ${{ matrix.preset }}
+          path: cmake-build/bin
+
+  test:
+    runs-on: [self-hosted, build]
+    strategy:
+      matrix:
+        include:
+          - image: embeddedlinux/gcc:11-22.04
+            preset: linux-gcc-debug
+          - image: embeddedlinux/clang:14-22.04
+            preset: linux-clang-debug
+    name: Test ${{ matrix.preset }}
+    container:
+      image: ${{ matrix.image }}
+    needs: build
+    steps:
+      - uses: alehechka/download-tartifact@v1
+        with:
+          name: ${{ matrix.preset }}
+      - name: Run test
+        run: |
+          cd cmake-build/bin
+          ./template-app

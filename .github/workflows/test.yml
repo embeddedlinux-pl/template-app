@@ -5,7 +5,7 @@ env:
 
 jobs:
   build:
-    runs-on: [self-hosted, build]
+    runs-on: [ubuntu-latest]
     strategy:
       matrix:
         include:
@@ -37,7 +37,7 @@ jobs:
           path: cmake-build/bin
 
   test:
-    runs-on: [self-hosted, build]
+    runs-on: [ubuntu-latest]
     strategy:
       matrix:
         include:
